@@ -26,5 +26,4 @@ public class LoginTests extends TestBase {
         loginPage.login("addressbook.test.user.21@gmail.com","1111");
         assertTrue(driver.getTitle().contains("Account Login"));
     }
-
 }
