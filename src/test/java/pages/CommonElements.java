@@ -7,11 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CommonElements {
 
-
-    @FindBy(xpath = ".//span[contains(text(),'item(s)')]")
+    @FindBy(xpath = "//span[contains(text(),'item(s)')]")
     WebElement checkoutButton;
 
-    @FindBy(xpath = ".//p[contains(@class, 'text-center')]")
+    @FindBy(xpath = "//p[contains(@class, 'text-center')]")
     WebElement checkoutDropdown;
 
     public String getCheckoutButtonInfo() {
