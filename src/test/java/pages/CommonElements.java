@@ -17,7 +17,6 @@ public class CommonElements {
         return checkoutButton.getText();
     }
 
-
     public String getCheckoutDropdownInfo() {
         checkoutButton.click();
         return checkoutDropdown.getText();
