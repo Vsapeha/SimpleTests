@@ -16,6 +16,9 @@ public class StartPage {
     @FindBy(xpath = "//a[contains(@class, 'see-all')][1]")
     WebElement seeAllCategoryProducts;
 
+    @FindBy(xpath = ".//span[contains(text(),'item(s)')]")
+    WebElement checkoutButton;
+
 
     public void goToLoginPage() {
         myAccountIcon.click();
@@ -26,4 +29,9 @@ public class StartPage {
         topMenuCategory.click();
         seeAllCategoryProducts.click();
     }
+
+    public String getCheckoutButtonInfo() {
+        return checkoutButton.getText();
+    }
 }
+
