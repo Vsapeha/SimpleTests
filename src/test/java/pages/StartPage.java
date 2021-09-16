@@ -11,7 +11,7 @@ public class StartPage {
     WebElement loginOption;
 
     @FindBy(linkText = "Desktops")
-    WebElement topMenuCategory;
+    WebElement topDesktopsCategory;
 
     @FindBy(xpath = "//a[contains(@class, 'see-all')][1]")
     WebElement seeAllCategoryProducts;
@@ -23,7 +23,7 @@ public class StartPage {
     }
 
     public void goToCategoryPage() {
-        topMenuCategory.click();
+        topDesktopsCategory.click();
         seeAllCategoryProducts.click();
     }
 
