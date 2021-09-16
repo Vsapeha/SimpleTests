@@ -2,22 +2,15 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.CategoryPage;
-import pages.CommonElements;
-import pages.StartPage;
 
 import static driverFactory.LocalDriverFactory.driver;
-import static org.openqa.selenium.support.PageFactory.initElements;
-import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
 import static org.testng.AssertJUnit.assertTrue;
 
-public class CartTests extends TestBase {
-
+public class AddToCartTests extends TestBase {
 
     @BeforeMethod
     public void ensureCartIsEmpty() {
