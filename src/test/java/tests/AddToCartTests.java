@@ -14,7 +14,7 @@ public class AddToCartTests extends TestBase {
 
     @BeforeMethod
     public void ensureCartIsEmpty() {
-        assertTrue(commonElements.getCheckoutButtonInfo().contains("0 item(s)"));
+        assertTrue(commonElements.getCheckoutButtonText().contains("0 item(s)"));
         assertTrue(commonElements.getCheckoutDropdownInfo().contains("Your shopping cart is empty!"));
     }
 
@@ -24,7 +24,7 @@ public class AddToCartTests extends TestBase {
         categoryPage.addToCart();
         new WebDriverWait(driver, 10).
                 until(ExpectedConditions.textToBePresentInElementLocated(By.id("cart-total"), "1 item(s)")); // PageFactory locator?
-        assertTrue(commonElements.getCheckoutButtonInfo().contains("1 item(s)"));
+        assertTrue(commonElements.getCheckoutButtonText().contains("1 item(s)"));
         assertTrue(categoryPage.getSuccessAlertText().contains("Success"));
 
     }

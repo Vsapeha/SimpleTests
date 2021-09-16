@@ -11,8 +11,12 @@ public class CommonElements {
     @FindBy(xpath = "//p[contains(@class, 'text-center')]")
     WebElement checkoutDropdown;
 
-    public String getCheckoutButtonInfo() {
+    public String getCheckoutButtonText() {
         return checkoutButton.getText();
+    }
+
+    public WebElement getCheckoutButtonElement() {
+        return checkoutButton;
     }
 
     public void clickOnCheckoutButton() {
