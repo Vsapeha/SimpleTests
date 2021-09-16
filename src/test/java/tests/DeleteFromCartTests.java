@@ -21,7 +21,7 @@ public class DeleteFromCartTests extends TestBase {
             categoryPage.addToCart();
         }
         new WebDriverWait(driver, 10).
-                until(ExpectedConditions.textToBePresentInElement(commonElements.getCheckoutButtonElement(), "1 item(s)")); // PageFactory locator?
+                until(ExpectedConditions.textToBePresentInElement(commonElements.getCheckoutButtonElement(), "1 item(s)"));
         assertTrue(commonElements.getCheckoutButtonText().contains("1 item(s)"));
     }
 

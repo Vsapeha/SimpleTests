@@ -23,7 +23,7 @@ public class AddToCartTests extends TestBase {
         startPage.goToCategoryPage();
         categoryPage.addToCart();
         new WebDriverWait(driver, 10).
-                until(ExpectedConditions.textToBePresentInElementLocated(By.id("cart-total"), "1 item(s)")); // PageFactory locator?
+                until(ExpectedConditions.textToBePresentInElement(commonElements.getCheckoutButtonElement(), "1 item(s)"));
         assertTrue(commonElements.getCheckoutButtonText().contains("1 item(s)"));
         assertTrue(categoryPage.getSuccessAlertText().contains("Success"));
 
