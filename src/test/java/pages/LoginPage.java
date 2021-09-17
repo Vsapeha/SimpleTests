@@ -1,9 +1,14 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage {
+public class LoginPage extends PageBase {
+
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
     @FindBy(id="input-email")
     WebElement emailField;
@@ -13,6 +18,7 @@ public class LoginPage {
 
     @FindBy(xpath=".//input[@value='Login']")
     WebElement loginButton;
+
 
 
     public void login (String userEmail, String userPassword) {

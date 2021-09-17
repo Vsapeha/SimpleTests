@@ -1,9 +1,15 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class StartPage {
+public class StartPage extends PageBase {
+
+    public StartPage(WebDriver driver) {
+        super(driver);
+    }
+
     @FindBy(xpath = ".//span[contains(text(),'My Account')]")
     WebElement myAccountIcon;
 
@@ -15,6 +21,8 @@ public class StartPage {
 
     @FindBy(xpath = "//a[contains(@class, 'see-all')][1]")
     WebElement seeAllCategoryProducts;
+
+
 
 
     public void goToLoginPage() {
