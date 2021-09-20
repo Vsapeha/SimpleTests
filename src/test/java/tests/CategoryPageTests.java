@@ -7,6 +7,8 @@ import pages.CategoryPage;
 import pages.CommonElements;
 import pages.StartPage;
 
+import static org.testng.Assert.*;
+
 public class CategoryPageTests extends TestBase{
 
     CategoryPage categoryPage = new CategoryPage(driver);
@@ -15,6 +17,6 @@ public class CategoryPageTests extends TestBase{
     @Test
     public void defaultNumberOfProductsOnPageTest() {
         startPage.goToCategoryPage();
-        Assert.assertTrue(categoryPage.getNumberOfProducts() <= 15);
+        assertTrue(categoryPage.getNumberOfProducts() <= 15, "There are more than 15 products on the page");
     }
 }

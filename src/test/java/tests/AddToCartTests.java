@@ -10,8 +10,6 @@ import org.testng.annotations.Test;
 import pages.CategoryPage;
 import pages.CommonElements;
 import pages.StartPage;
-
-import static driverFactory.LocalDriverFactory.driver;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class AddToCartTests extends TestBase {
@@ -23,8 +21,9 @@ public class AddToCartTests extends TestBase {
 
     @BeforeMethod
     public void ensureCartIsEmpty() {
-        assertTrue(commonElements.getCheckoutButtonText().contains("0 item(s)"));
-        assertTrue(commonElements.getCheckoutDropdownInfo().contains("Your shopping cart is empty!"));
+        assertTrue("Checkout button: Cart is not empty", commonElements.getCheckoutButtonText().contains("0 item(s)"));
+        assertTrue("Checkout dropdown: Cart is not empty", commonElements.getCheckoutDropdownInfo().contains("Your shopping cart is empty!"));
+
     }
 
     @Test
@@ -33,8 +32,8 @@ public class AddToCartTests extends TestBase {
         categoryPage.addToCart();
         new WebDriverWait(driver, 10).
                 until(ExpectedConditions.textToBePresentInElement(commonElements.getCheckoutButtonElement(), "1 item(s)"));
-        assertTrue(commonElements.getCheckoutButtonText().contains("1 item(s)"));
-        assertTrue(categoryPage.getSuccessAlertText().contains("Success"));
+        assertTrue("Checkout button: Cart has No of products other than 1",commonElements.getCheckoutButtonText().contains("1 item(s)"));
+        assertTrue("Success alert text doesn't include word 'Success'", categoryPage.getSuccessAlertText().contains("Success"));
 
     }
 

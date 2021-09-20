@@ -18,12 +18,15 @@ public class LoginTests extends TestBase {
     public void positiveLoginTest() {
         startPage.goToLoginPage();
         loginPage.login("addressbook.test.user.21@gmail.com","151192");
-        assertTrue(driver.getTitle().contains("My Account"));
+        assertTrue("User is NOT logged in as page title is not 'My Account'",
+                driver.getTitle().equals("My Account"));
     }
     @Test
     public void negativeLoginTest() {
         startPage.goToLoginPage();
         loginPage.login("addressbook.test.user.21@gmail.com","1111");
-        assertTrue(driver.getTitle().contains("Account Login"));
+        assertTrue("User is logged in as page title is not 'Account Login'",
+                driver.getTitle().equals("Account Login"));
+
     }
 }
