@@ -1,8 +1,14 @@
 package pages;
 
+import models.ProductData;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StartPage extends PageBase {
 
@@ -10,10 +16,12 @@ public class StartPage extends PageBase {
         super(driver);
     }
 
-    @FindBy(xpath = ".//span[contains(text(),'My Account')]")
+
+
+    @FindBy(xpath = "//span[contains(text(),'My Account')]")
     WebElement myAccountIcon;
 
-    @FindBy(xpath = ".//a[contains(text(),'Login')]")
+    @FindBy(xpath = "//a[contains(text(),'Login')]")
     WebElement loginOption;
 
     @FindBy(linkText = "Desktops")
@@ -28,6 +36,51 @@ public class StartPage extends PageBase {
     @FindBy(xpath = "//a[contains(@class, 'see-all')][1]")
     WebElement seeAllCategoryProducts;
 
+    @FindBy(xpath = "//form[@id='form-currency']//strong")
+    WebElement currencyIcon;
+
+    @FindBy(name = "GBP")
+    WebElement currencyPound;
+
+    @FindBy(name = "EUR")
+    WebElement currencyEuro;
+
+
+    public List<ProductData> allProducts() {
+        List<ProductData> products = new ArrayList<>();
+        List<WebElement> elements = productsList;
+        for (WebElement element : elements) {
+            String title = element.findElement(By.xpath(titleXPathLocator)).getText();
+            String priceInitial = element.findElement(By.xpath(priceXPathLocator)).getText();
+            String priceTax = element.findElement(By.xpath(priceTaxXPathLocator)).getText();
+            String priceInitialWithBlankSpaces = priceInitial.replace(priceTax, "");
+            String price = priceInitialWithBlankSpaces.replaceAll("\\s", "");
+            String priceNew;
+            String priceOld;
+            try {
+                WebElement priceNewElement = element.findElement(By.xpath(priceNewXPathLocator));
+                priceNew = priceNewElement.getText();
+            } catch (Exception e) {
+                priceNew = null;
+            }
+            try {
+                WebElement priceOldElements = element.findElement(By.xpath(priceOldXPathLocator));
+                priceOld = priceOldElements.getText();
+            } catch (Exception e) {
+                priceOld = null;
+            }
+            if (priceOld != null) {
+                price = null;
+            }
+            WebElement addToCart = element.findElement(By.xpath(addToCartXPathLocator));
+            WebElement addToWishlist = element.findElement(By.xpath(addToWishlistXPathLocator));
+            WebElement compare = element.findElement(By.xpath(compareXPathLocator));
+            ProductData product = new ProductData(title, null, null, price, priceNew, priceOld, priceTax, addToCart,
+                    addToWishlist, compare, null, null);
+            products.add(product);
+        }
+        return products;
+    }
 
     public void goToLoginPage() {
         myAccountIcon.click();
@@ -42,8 +95,42 @@ public class StartPage extends PageBase {
     public void goToMonitorsSubcategoryPage() {
         topComponentsCategory.click();
         topMonitorsSubcategory.click();
+    }
+    public String getCurrency() {
+        return currencyIcon.getText();
+    }
 
+
+    public List<ProductData> chooseProductsWithTestTitle() {
+        String testTitle = "iPhone";
+        List<ProductData> products = allProducts();
+        List<ProductData> productsWithTestTitles = products
+                .stream()
+                .filter(c -> c.getTitle().contains(testTitle)).collect(Collectors.toList());
+        return productsWithTestTitles;
+    }
+
+    public void changeCurrencyToPound() {
+        currencyIcon.click();
+        currencyPound.click();
+    }
+
+    public void changeCurrencyToEuro() {
+        currencyIcon.click();
+        currencyEuro.click();
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
