@@ -1,8 +1,5 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
@@ -22,18 +19,20 @@ public class AddToCartTests extends TestBase {
     @BeforeMethod
     public void ensureCartIsEmpty() {
         assertTrue("Checkout button: Cart is not empty", commonElements.getCheckoutButtonText().contains("0 item(s)"));
-        assertTrue("Checkout dropdown: Cart is not empty", commonElements.getCheckoutDropdownInfo().contains("Your shopping cart is empty!"));
-
+        assertTrue("Checkout dropdown: Cart is not empty", commonElements.getCheckoutDropdownInfo().
+                contains("Your shopping cart is empty!"));
     }
 
     @Test
     public void addToCartFromCategoryPage() {
-        startPage.goToCategoryPage();
+        startPage.goToDesktopsCategoryPage();
         categoryPage.addToCart();
         new WebDriverWait(driver, 10).
                 until(ExpectedConditions.textToBePresentInElement(commonElements.getCheckoutButtonElement(), "1 item(s)"));
-        assertTrue("Checkout button: Cart has No of products other than 1",commonElements.getCheckoutButtonText().contains("1 item(s)"));
-        assertTrue("Success alert text doesn't include word 'Success'", categoryPage.getSuccessAlertText().contains("Success"));
+        assertTrue("Checkout button: Cart has No of products other than 1",commonElements.getCheckoutButtonText().
+                contains("1 item(s)"));
+        assertTrue("Success alert text doesn't include word 'Success'", categoryPage.getSuccessAlertText().
+                contains("Success"));
 
     }
 

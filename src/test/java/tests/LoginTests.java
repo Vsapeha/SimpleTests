@@ -24,8 +24,8 @@ public class LoginTests extends TestBase {
     @Test
     public void negativeLoginTest() {
         startPage.goToLoginPage();
-        loginPage.login("addressbook.test.user.21@gmail.com","1111");
-        assertTrue("User is logged in as page title is not 'Account Login'",
+        loginPage.login("addressbook.test.user.21@gmail.com","wrong password");
+        assertTrue("User is NOT on loginPage as page title is not 'Account Login'",
                 driver.getTitle().equals("Account Login"));
 
     }

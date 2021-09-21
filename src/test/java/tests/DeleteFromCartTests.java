@@ -1,18 +1,13 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CategoryPage;
 import pages.CommonElements;
-import pages.LoginPage;
 import pages.StartPage;
 
-import static driverFactory.LocalDriverFactory.driver;
 import static org.testng.AssertJUnit.assertTrue;
 
 
@@ -25,7 +20,7 @@ public class DeleteFromCartTests extends TestBase {
     @BeforeMethod
     public void ensureCartHasProduct() {
         if (commonElements.getCheckoutDropdownInfo().equals("Your shopping cart is empty!")) {
-            startPage.goToCategoryPage();
+            startPage.goToDesktopsCategoryPage();
             categoryPage.addToCart();
         }
         new WebDriverWait(driver, 10).

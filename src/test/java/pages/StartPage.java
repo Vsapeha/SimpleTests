@@ -19,10 +19,14 @@ public class StartPage extends PageBase {
     @FindBy(linkText = "Desktops")
     WebElement topDesktopsCategory;
 
+    @FindBy(linkText = "Components")
+    WebElement topComponentsCategory;
+
+    @FindBy(partialLinkText = "Monitors")
+    WebElement topMonitorsSubcategory;
+
     @FindBy(xpath = "//a[contains(@class, 'see-all')][1]")
     WebElement seeAllCategoryProducts;
-
-
 
 
     public void goToLoginPage() {
@@ -30,9 +34,15 @@ public class StartPage extends PageBase {
         loginOption.click();
     }
 
-    public void goToCategoryPage() {
+    public void goToDesktopsCategoryPage() {
         topDesktopsCategory.click();
         seeAllCategoryProducts.click();
+    }
+
+    public void goToMonitorsSubcategoryPage() {
+        topComponentsCategory.click();
+        topMonitorsSubcategory.click();
+
     }
 
 }
