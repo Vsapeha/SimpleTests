@@ -25,7 +25,7 @@ import static org.testng.AssertJUnit.assertTrue;
         WishlistPage wishlistPage = new WishlistPage(driver);
 
         @Test
-        // (enabled = false)
+                (enabled = false)
         public void FirstTest() {
             startPage.goToLoginPage();
             loginPage.login("addressbook.test.user.21@gmail.com", "151192");
@@ -42,24 +42,45 @@ import static org.testng.AssertJUnit.assertTrue;
         }
 
         @Test
+                (enabled = false)
         public void SecondTest() {
             String currency = startPage.getCurrency();
             Assert.assertEquals(currency, "$");
-            List<ProductData> productsWithPricesInDollars = startPage.chooseProductsWithTestTitle();
+            String testTitle = "iPhone";
+            List<ProductData> productsWithPricesInDollars = startPage.chooseProductsWithTestTitle(testTitle);
             for (ProductData p : productsWithPricesInDollars) {
                 Assert.assertEquals(p.getPrice(), "$123.20");
             }
             startPage.changeCurrencyToEuro();
-            List<ProductData> productsWithPricesInEuro = startPage.chooseProductsWithTestTitle();
+            List<ProductData> productsWithPricesInEuro = startPage.chooseProductsWithTestTitle(testTitle);
             for (ProductData p : productsWithPricesInEuro) {
                 Assert.assertEquals(p.getPrice(), "106.04€");
             }
             startPage.changeCurrencyToPound();
-            List<ProductData> productsWithPricesInPounds = startPage.chooseProductsWithTestTitle();
+            List<ProductData> productsWithPricesInPounds = startPage.chooseProductsWithTestTitle(testTitle);
             for (ProductData p : productsWithPricesInPounds) {
                 Assert.assertEquals(p.getPrice(), "£92.93");
             }
         }
-    }
 
+        @Test
+        public void ThirdTest() {
+            startPage.goToCamerasCategoryPage();
+            int numberOfProducts = categoryPage.getNumberOfProducts();
+            assertEquals(numberOfProducts, 2);
+            String testTitleFirst = "Canon EOS 5D";
+            String testTitleSecond = "Nikon D300";
+            List<ProductData> products1 = categoryPage.chooseProductsWithTestTitle(testTitleFirst);
+            for (ProductData p : products1) {
+                Assert.assertEquals(p.getPriceNew(), "$98.00");
+                Assert.assertEquals(p.getPriceOld(), "$122.00");
+            }
+            List<ProductData> products2 = categoryPage.chooseProductsWithTestTitle(testTitleSecond);
+            for (ProductData p : products2) {
+                Assert.assertEquals(p.getPriceTax(), "Ex Tax: $80.00");
+
+            }
+
+        }
+    }
 

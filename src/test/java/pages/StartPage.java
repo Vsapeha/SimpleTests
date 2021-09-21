@@ -30,6 +30,9 @@ public class StartPage extends PageBase {
     @FindBy(linkText = "Components")
     WebElement topComponentsCategory;
 
+    @FindBy(linkText = "Cameras")
+    WebElement topCamerasCategory;
+
     @FindBy(partialLinkText = "Monitors")
     WebElement topMonitorsSubcategory;
 
@@ -92,6 +95,10 @@ public class StartPage extends PageBase {
         seeAllCategoryProducts.click();
     }
 
+    public void goToCamerasCategoryPage() {
+        topCamerasCategory.click();
+    }
+
     public void goToMonitorsSubcategoryPage() {
         topComponentsCategory.click();
         topMonitorsSubcategory.click();
@@ -101,14 +108,7 @@ public class StartPage extends PageBase {
     }
 
 
-    public List<ProductData> chooseProductsWithTestTitle() {
-        String testTitle = "iPhone";
-        List<ProductData> products = allProducts();
-        List<ProductData> productsWithTestTitles = products
-                .stream()
-                .filter(c -> c.getTitle().contains(testTitle)).collect(Collectors.toList());
-        return productsWithTestTitles;
-    }
+
 
     public void changeCurrencyToPound() {
         currencyIcon.click();

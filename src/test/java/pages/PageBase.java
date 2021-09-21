@@ -10,6 +10,7 @@ import tests.TestBase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PageBase{
     protected WebDriver driver;
@@ -58,14 +59,20 @@ public class PageBase{
             WebElement addToCart = element.findElement(By.xpath(addToCartXPathLocator));
             WebElement addToWishlist = element.findElement(By.xpath(addToWishlistXPathLocator));
             WebElement compare = element.findElement(By.xpath(compareXPathLocator));
-            ProductData product = new ProductData(title, null, null, price, priceNew, priceOld, priceTax, addToCart,
+            ProductData product = new ProductData(title, null, null, price, priceOld, priceNew, priceTax, addToCart,
                     addToWishlist, compare, null, null);
             products.add(product);
         }
         return products;
     }
 
-
+    public List<ProductData> chooseProductsWithTestTitle(String testTitle) {
+        List<ProductData> products = allProducts();
+        List<ProductData> productsWithTestTitles = products
+                .stream()
+                .filter(c -> c.getTitle().contains(testTitle)).collect(Collectors.toList());
+        return productsWithTestTitles;
+    }
 
 
 

@@ -29,16 +29,6 @@ public class CategoryPage extends PageBase {
     WebElement wishlistPage;
 
 
-
-/*    String titleXPathLocator = ".//div[contains(@class, 'caption')]//a";
-    String priceXPathLocator = ".//p[contains(@class, 'price')]";
-    String priceNewXPathLocator = ".//p[contains(@class, 'price')]//span[contains(@class, 'price-new')]";
-    String priceOldXPathLocator = ".//p[contains(@class, 'price')]//span[contains(@class, 'price-old')]";
-    String priceTaxXPathLocator = ".//p[contains(@class, 'price')]//span[contains(@class, 'price-tax')]";
-    String addToCartXPathLocator = ".//button[contains(@onclick, 'cart.add')]";
-    String addToWishlistXPathLocator = ".//button[contains(@onclick, 'wishlist.add')]";
-    String compareXPathLocator = ".//button[contains(@onclick, 'compare.add')]";*/
-
     // methods of old tests (without product model)
     public void addToCart() {
         htcCartIcon.click();
@@ -57,9 +47,6 @@ public class CategoryPage extends PageBase {
     }
 
     // methods of new tests (with product model)
-
-
-
     public List<ProductData> addProductsWithTestTitlesToWishlist() {
         String testTitleFirst = "Apple";
         String testTitleSecond = "Samsung";
