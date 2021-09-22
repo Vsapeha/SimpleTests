@@ -21,6 +21,17 @@ public class PageBase{
     @FindBy(xpath = "//div[contains(@class, 'product-thumb')]")
     List<WebElement> productsList;
 
+    @FindBy(xpath = "//span[contains(text(),'My Account')]")
+    public
+    WebElement myAccountIcon;
+
+    @FindBy(xpath = "//a[contains(text(),'Logout')]")
+    public
+    WebElement  logoutOption;
+
+    @FindBy(linkText = "Continue")
+    WebElement continueButton;
+
     String titleXPathLocator = ".//div[contains(@class, 'caption')]//a";
     String priceXPathLocator = ".//p[contains(@class, 'price')]";
     String priceNewXPathLocator = ".//p[contains(@class, 'price')]//span[contains(@class, 'price-new')]";
@@ -73,6 +84,36 @@ public class PageBase{
                 .filter(c -> c.getTitle().contains(testTitle)).collect(Collectors.toList());
         return productsWithTestTitles;
     }
+    @FindBy(id = "cart-total")
+    WebElement checkoutButton;
+
+    @FindBy(xpath = "//p[contains(@class, 'text-center')]")
+    WebElement checkoutDropdown;
+
+
+    public String getCheckoutButtonText() {
+        return checkoutButton.getText();
+    }
+
+    public WebElement getCheckoutButtonElement() {
+        return checkoutButton;
+    }
+
+    public void clickOnCheckoutButton() {
+        checkoutButton.click();
+    }
+
+    public String getCheckoutDropdownInfo() {
+        clickOnCheckoutButton();
+        return checkoutDropdown.getText();
+    }
+    public void logout() {
+        myAccountIcon.click();
+        logoutOption.click();
+        continueButton.click();
+    }
+
+    }
 
 
 
@@ -80,4 +121,3 @@ public class PageBase{
 
 
 
-}

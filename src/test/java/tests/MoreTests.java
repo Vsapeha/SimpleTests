@@ -1,8 +1,11 @@
 package tests;
 
 import models.ProductData;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CategoryPage;
 import pages.LoginPage;
@@ -25,25 +28,22 @@ import static org.testng.AssertJUnit.assertTrue;
         WishlistPage wishlistPage = new WishlistPage(driver);
 
         @Test
-                (enabled = false)
-        public void FirstTest() {
+              //  (enabled = false)
+        public void firstTest() {
             startPage.goToLoginPage();
             loginPage.login("addressbook.test.user.21@gmail.com", "151192");
-            assertTrue(driver.getTitle().contains("My Account"));
+            assertTrue(driver.getTitle().equals("My Account"));
             startPage.goToMonitorsSubcategoryPage();
             List<ProductData> addedProducts = categoryPage.addProductsWithTestTitlesToWishlist();
             categoryPage.goToWishlistPage();
             List<ProductData> productsOnWishlist = wishlistPage.allProducts();
             Assert.assertEquals(new HashSet<Object>(productsOnWishlist), new HashSet<Object>(addedProducts));
-            /*Comparator<? super ProductData> byTitle = (p1, p2) -> CharSequence.compare(p1.getTitle(), p2.getTitle());
-            addedProducts.sort(byTitle);
-            productsOnWishlist.sort(byTitle);
-            Assert.assertEquals(addedProducts, productsOnWishlist);*/ //comparison of sorted lists
+            categoryPage.logout();
         }
 
         @Test
-                (enabled = false)
-        public void SecondTest() {
+             //   (enabled = false)
+        public void secondTest() {
             String currency = startPage.getCurrency();
             Assert.assertEquals(currency, "$");
             String testTitle = "iPhone";
@@ -61,23 +61,28 @@ import static org.testng.AssertJUnit.assertTrue;
             for (ProductData p : productsWithPricesInPounds) {
                 Assert.assertEquals(p.getPrice(), "£92.93");
             }
+            startPage.changeCurrencyToDollar();
         }
 
+
         @Test
-        public void ThirdTest() {
+        public void thirdTest() {
             startPage.goToCamerasCategoryPage();
             int numberOfProducts = categoryPage.getNumberOfProducts();
             assertEquals(numberOfProducts, 2);
             String testTitleFirst = "Canon EOS 5D";
             String testTitleSecond = "Nikon D300";
+            String priceNewFirst = "$98.00";
+            String priceOldFirst = "$122.00";
+            String priceTaxSecond = "Ex Tax: $80.00";
             List<ProductData> products1 = categoryPage.chooseProductsWithTestTitle(testTitleFirst);
             for (ProductData p : products1) {
-                Assert.assertEquals(p.getPriceNew(), "$98.00");
-                Assert.assertEquals(p.getPriceOld(), "$122.00");
+                Assert.assertEquals(p.getPriceNew(), priceNewFirst);
+                Assert.assertEquals(p.getPriceOld(), priceOldFirst);
             }
             List<ProductData> products2 = categoryPage.chooseProductsWithTestTitle(testTitleSecond);
             for (ProductData p : products2) {
-                Assert.assertEquals(p.getPriceTax(), "Ex Tax: $80.00");
+                Assert.assertEquals(p.getPriceTax(), priceTaxSecond);
 
             }
 

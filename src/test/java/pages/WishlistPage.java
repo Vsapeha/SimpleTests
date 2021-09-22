@@ -58,7 +58,7 @@ public class WishlistPage extends PageBase{
             WebElement addToCartButton = element.findElement(By.xpath(addToCartButtonXPathLocator));
             WebElement removeFromWishlistButton = element.
                     findElement(By.xpath(removeFromWishlistButtonXPathLocator));
-            ProductData product = new ProductData(title, model,  stock, price, priceNew, priceOld, null,
+            ProductData product = new ProductData(title, model,  stock, price, priceOld, priceNew,null,
                     null, null, null,
                     addToCartButton, removeFromWishlistButton);
             products.add(product);

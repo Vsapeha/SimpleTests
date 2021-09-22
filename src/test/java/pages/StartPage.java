@@ -17,10 +17,6 @@ public class StartPage extends PageBase {
     }
 
 
-
-    @FindBy(xpath = "//span[contains(text(),'My Account')]")
-    WebElement myAccountIcon;
-
     @FindBy(xpath = "//a[contains(text(),'Login')]")
     WebElement loginOption;
 
@@ -47,6 +43,9 @@ public class StartPage extends PageBase {
 
     @FindBy(name = "EUR")
     WebElement currencyEuro;
+
+    @FindBy(name = "USD")
+    WebElement currencyDollar;
 
 
     public List<ProductData> allProducts() {
@@ -107,9 +106,6 @@ public class StartPage extends PageBase {
         return currencyIcon.getText();
     }
 
-
-
-
     public void changeCurrencyToPound() {
         currencyIcon.click();
         currencyPound.click();
@@ -120,6 +116,13 @@ public class StartPage extends PageBase {
         currencyEuro.click();
     }
 
+    public void changeCurrencyToDollar() {
+        currencyIcon.click();
+        currencyDollar.click();
+
+
+
+    }
 }
 
 
