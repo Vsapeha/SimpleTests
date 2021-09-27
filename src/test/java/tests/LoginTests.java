@@ -1,12 +1,9 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.StartPage;
 
-import static driverFactory.LocalDriverFactory.driver;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class LoginTests extends TestBase {
