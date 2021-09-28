@@ -1,6 +1,7 @@
 package tests;
 
 import models.ProductData;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
@@ -23,9 +24,11 @@ import static org.testng.AssertJUnit.assertTrue;
         @Test
               //  (enabled = false)
         public void firstTest() {
-            pageBase.goToStartPage();
-            if (startPage.myAccountOptions == 2) {
-                startPage.goToLoginPage();
+            pageBase.myAccountIcon.click();
+            List<WebElement> accountOptions = startPage.myAccountOption;
+            int myAccountOptions = accountOptions.size();
+            if (myAccountOptions == 2) {
+                startPage.loginOption.click();
                 loginPage.login("addressbook.test.user.21@gmail.com", "151192");
                 assertTrue(driver.getTitle().equals("My Account"));
             }
@@ -40,22 +43,21 @@ import static org.testng.AssertJUnit.assertTrue;
         @Test
              //   (enabled = false)
         public void secondTest() {
-            String currency = startPage.getCurrency();
-            Assert.assertEquals(currency, "$");
+            Assert.assertEquals(startPage.getCurrency(), "$");
             String testTitle = "iPhone";
             List<ProductData> productsWithPricesInDollars = startPage.chooseProductsWithTestTitle(testTitle);
             for (ProductData p : productsWithPricesInDollars) {
-                Assert.assertEquals(p.getPrice(), "$123.20");
+                Assert.assertEquals(p.getPrice(), startPage.getCurrency() + "123.20");
             }
             startPage.changeCurrencyToEuro();
             List<ProductData> productsWithPricesInEuro = startPage.chooseProductsWithTestTitle(testTitle);
             for (ProductData p : productsWithPricesInEuro) {
-                Assert.assertEquals(p.getPrice(), "106.04€");
+                Assert.assertEquals(p.getPrice(), "106.04" + startPage.getCurrency());
             }
             startPage.changeCurrencyToPound();
             List<ProductData> productsWithPricesInPounds = startPage.chooseProductsWithTestTitle(testTitle);
             for (ProductData p : productsWithPricesInPounds) {
-                Assert.assertEquals(p.getPrice(), "£92.93");
+                Assert.assertEquals(p.getPrice(), startPage.getCurrency() + "92.93");
             }
             startPage.changeCurrencyToDollar();
         }
@@ -63,14 +65,15 @@ import static org.testng.AssertJUnit.assertTrue;
 
         @Test
         public void thirdTest() {
+            String currency = startPage.getCurrency();
             startPage.goToCamerasCategoryPage();
             int numberOfProducts = categoryPage.getNumberOfProducts();
             assertEquals(numberOfProducts, 2);
             String testTitleFirst = "Canon EOS 5D";
             String testTitleSecond = "Nikon D300";
-            String priceNewFirst = "$98.00";
-            String priceOldFirst = "$122.00";
-            String priceTaxSecond = "Ex Tax: $80.00";
+            String priceNewFirst = currency + "98.00";
+            String priceOldFirst = currency + "122.00";
+            String priceTaxSecond = "Ex Tax: " + currency + "80.00";
             List<ProductData> products1 = categoryPage.chooseProductsWithTestTitle(testTitleFirst);
             for (ProductData p : products1) {
                 Assert.assertEquals(p.getPriceNew(), priceNewFirst);

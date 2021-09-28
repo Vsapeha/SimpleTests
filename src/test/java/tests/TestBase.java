@@ -1,10 +1,7 @@
 package tests;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import static driverFactory.LocalDriverFactory.closeDriver;
 import static driverFactory.LocalDriverFactory.getDriver;
@@ -17,12 +14,12 @@ public class TestBase {
         driver = getDriver();
     }
 
-    @BeforeSuite
+    @BeforeTest
     public void openMainPage() {
         driver.get("https://demo.opencart.com");
     }
 
-    @AfterSuite
+    @AfterTest
     public void closeDriverInstance() {
         closeDriver();
     }

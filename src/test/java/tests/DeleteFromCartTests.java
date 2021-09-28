@@ -31,9 +31,9 @@ public class DeleteFromCartTests extends TestBase {
         public void deleteFromCartOnCategoryPage() {
             categoryPage.clickOnCheckoutButton();
             categoryPage.deleteFromCartViaCheckout();
-   /*         new WebDriverWait(driver, 10).
+            new WebDriverWait(driver, 10).
                     until(ExpectedConditions.textToBePresentInElement(categoryPage.getCheckoutButtonElement(),
-                            "0 item(s)"));*/
+                            "0 item(s)"));
             assertTrue(categoryPage.getCheckoutButtonText().contains("0 item(s)"));
 
         }

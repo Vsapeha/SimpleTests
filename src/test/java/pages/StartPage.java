@@ -18,6 +18,7 @@ public class StartPage extends PageBase {
     }
 
     @FindBy(xpath = "//a[contains(text(),'Login')]")
+    public
     WebElement loginOption;
 
     @FindBy(linkText = "Desktops")
@@ -48,13 +49,12 @@ public class StartPage extends PageBase {
     WebElement currencyDollar;
 
     @FindBy(xpath = "//ul[contains(@class, 'dropdown-menu dropdown-menu-right')]//a")
+    public
     List<WebElement> myAccountOption;
 
-    public int countMyAccountOptions() {
-        List<WebElement> accountOptions = myAccountOption;
-        int myAccountOptions;
-        return myAccountOptions = accountOptions.size();
-    }
+
+
+
 
     public List<ProductData> allProducts() {
         List<ProductData> products = new ArrayList<>();
@@ -110,6 +110,7 @@ public class StartPage extends PageBase {
         topComponentsCategory.click();
         topMonitorsSubcategory.click();
     }
+
     public String getCurrency() {
         return currencyIcon.getText();
     }
@@ -128,10 +129,9 @@ public class StartPage extends PageBase {
         currencyIcon.click();
         currencyDollar.click();
 
-
-
     }
 }
+
 
 
 
