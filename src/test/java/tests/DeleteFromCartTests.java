@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CategoryPage;
+import pages.PageBase;
 import pages.StartPage;
 
 import static org.testng.AssertJUnit.assertTrue;
@@ -17,7 +18,7 @@ public class DeleteFromCartTests extends TestBase {
 
     @BeforeMethod
     public void ensureCartHasProduct() {
-        if (startPage.getCheckoutDropdownInfo().equals("Your shopping cart is empty!")) {
+        if (startPage.getCheckoutButtonText().contains("0 item(s)")) {
             startPage.goToDesktopsCategoryPage();
             categoryPage.addToCart();
         }
@@ -30,7 +31,10 @@ public class DeleteFromCartTests extends TestBase {
         public void deleteFromCartOnCategoryPage() {
             categoryPage.clickOnCheckoutButton();
             categoryPage.deleteFromCartViaCheckout();
-            assertTrue(categoryPage.getCheckoutDropdownInfo().contains("Your shopping cart is empty!"));
+   /*         new WebDriverWait(driver, 10).
+                    until(ExpectedConditions.textToBePresentInElement(categoryPage.getCheckoutButtonElement(),
+                            "0 item(s)"));*/
+            assertTrue(categoryPage.getCheckoutButtonText().contains("0 item(s)"));
 
         }
     }

@@ -3,10 +3,8 @@ package tests;
 import models.ProductData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.CategoryPage;
-import pages.LoginPage;
-import pages.StartPage;
-import pages.WishlistPage;
+import pages.*;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -19,13 +17,18 @@ import static org.testng.AssertJUnit.assertTrue;
         StartPage startPage = new StartPage(driver);
         CategoryPage categoryPage = new CategoryPage(driver);
         WishlistPage wishlistPage = new WishlistPage(driver);
+        PageBase pageBase = new PageBase(driver);
+
 
         @Test
               //  (enabled = false)
         public void firstTest() {
-            startPage.goToLoginPage();
-            loginPage.login("addressbook.test.user.21@gmail.com", "151192");
-            assertTrue(driver.getTitle().equals("My Account"));
+            pageBase.goToStartPage();
+            if (startPage.myAccountOptions == 2) {
+                startPage.goToLoginPage();
+                loginPage.login("addressbook.test.user.21@gmail.com", "151192");
+                assertTrue(driver.getTitle().equals("My Account"));
+            }
             startPage.goToMonitorsSubcategoryPage();
             List<ProductData> addedProducts = categoryPage.addProductsWithTestTitlesToWishlist();
             categoryPage.goToWishlistPage();

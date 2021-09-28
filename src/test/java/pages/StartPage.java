@@ -11,10 +11,11 @@ import java.util.List;
 
 public class StartPage extends PageBase {
 
+    public int myAccountOptions;
+
     public StartPage(WebDriver driver) {
         super(driver);
     }
-
 
     @FindBy(xpath = "//a[contains(text(),'Login')]")
     WebElement loginOption;
@@ -46,6 +47,14 @@ public class StartPage extends PageBase {
     @FindBy(name = "USD")
     WebElement currencyDollar;
 
+    @FindBy(xpath = "//ul[contains(@class, 'dropdown-menu dropdown-menu-right')]//a")
+    List<WebElement> myAccountOption;
+
+    public int countMyAccountOptions() {
+        List<WebElement> accountOptions = myAccountOption;
+        int myAccountOptions;
+        return myAccountOptions = accountOptions.size();
+    }
 
     public List<ProductData> allProducts() {
         List<ProductData> products = new ArrayList<>();

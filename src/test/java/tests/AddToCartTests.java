@@ -16,9 +16,9 @@ public class AddToCartTests extends TestBase {
 
     @BeforeMethod
     public void ensureCartIsEmpty() {
-        assertTrue("Checkout button: Cart is not empty", startPage.getCheckoutButtonText().contains("0 item(s)"));
-        assertTrue("Checkout dropdown: Cart is not empty", startPage.getCheckoutDropdownInfo().
-                contains("Your shopping cart is empty!"));
+        while (! startPage.getCheckoutDropdownInfo().equals("Your shopping cart is empty!")) {
+            categoryPage.deleteFromCartViaCheckout();
+        }
     }
 
     @Test
