@@ -11,12 +11,14 @@ import java.util.List;
 
 public class StartPage extends PageBase {
 
+    public int myAccountOptions;
+
     public StartPage(WebDriver driver) {
         super(driver);
     }
 
-
     @FindBy(xpath = "//a[contains(text(),'Login')]")
+    public
     WebElement loginOption;
 
     @FindBy(linkText = "Desktops")
@@ -45,6 +47,13 @@ public class StartPage extends PageBase {
 
     @FindBy(name = "USD")
     WebElement currencyDollar;
+
+    @FindBy(xpath = "//ul[contains(@class, 'dropdown-menu dropdown-menu-right')]//a")
+    public
+    List<WebElement> myAccountOption;
+
+
+
 
 
     public List<ProductData> allProducts() {
@@ -101,6 +110,7 @@ public class StartPage extends PageBase {
         topComponentsCategory.click();
         topMonitorsSubcategory.click();
     }
+
     public String getCurrency() {
         return currencyIcon.getText();
     }
@@ -119,10 +129,9 @@ public class StartPage extends PageBase {
         currencyIcon.click();
         currencyDollar.click();
 
-
-
     }
 }
+
 
 
 

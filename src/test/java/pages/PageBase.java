@@ -12,12 +12,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PageBase{
+public class PageBase {
     protected WebDriver driver;
 
     public PageBase(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
+
     @FindBy(xpath = "//div[contains(@class, 'product-thumb')]")
     List<WebElement> productsList;
 
@@ -27,10 +28,13 @@ public class PageBase{
 
     @FindBy(xpath = "//a[contains(text(),'Logout')]")
     public
-    WebElement  logoutOption;
+    WebElement logoutOption;
 
     @FindBy(linkText = "Continue")
     WebElement continueButton;
+
+    @FindBy(id = "logo")
+    WebElement logo;
 
     String titleXPathLocator = ".//div[contains(@class, 'caption')]//a";
     String priceXPathLocator = ".//p[contains(@class, 'price')]";
@@ -48,8 +52,8 @@ public class PageBase{
             String title = element.findElement(By.xpath(titleXPathLocator)).getText();
             String priceInitial = element.findElement(By.xpath(priceXPathLocator)).getText();
             String priceTax = element.findElement(By.xpath(priceTaxXPathLocator)).getText();
-            String priceInitialWithBlankSpaces = priceInitial.replace(priceTax,"");
-            String price = priceInitialWithBlankSpaces.replaceAll("\\s","");
+            String priceInitialWithBlankSpaces = priceInitial.replace(priceTax, "");
+            String price = priceInitialWithBlankSpaces.replaceAll("\\s", "");
             String priceNew;
             String priceOld;
             try {
@@ -84,10 +88,11 @@ public class PageBase{
                 .filter(c -> c.getTitle().contains(testTitle)).collect(Collectors.toList());
         return productsWithTestTitles;
     }
+
     @FindBy(id = "cart-total")
     WebElement checkoutButton;
 
-    @FindBy(xpath = "//p[contains(@class, 'text-center')]")
+    @FindBy(xpath = "//ul[contains(@class, 'dropdown-menu pull-right')]//*")
     WebElement checkoutDropdown;
 
 
@@ -107,13 +112,17 @@ public class PageBase{
         clickOnCheckoutButton();
         return checkoutDropdown.getText();
     }
+
     public void logout() {
         myAccountIcon.click();
         logoutOption.click();
         continueButton.click();
     }
 
+    public void goToStartPage() {
+        logo.click();
     }
+}
 
 
 
