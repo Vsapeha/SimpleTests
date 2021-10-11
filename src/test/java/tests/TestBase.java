@@ -14,12 +14,12 @@ public class TestBase {
         driver = getDriver();
     }
 
-    @BeforeTest
+    @BeforeSuite
     public void openMainPage() {
         driver.get("https://demo.opencart.com");
-    }
+        System.out.println("Thread id is "+ Thread.currentThread().getId());}
 
-    @AfterTest
+    @AfterSuite
     public void closeDriverInstance() {
         closeDriver();
     }

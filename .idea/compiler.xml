@@ -9,8 +9,5 @@
         <module name="SimpleTestsTestNg" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="SimpleTestsTestNg" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
