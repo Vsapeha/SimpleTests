@@ -10,16 +10,15 @@ public class TestBase {
     protected WebDriver driver;
 
     public TestBase()
-    {
-        driver = getDriver();
+    { driver = getDriver();
     }
 
-    @BeforeSuite
+    @BeforeTest
     public void openMainPage() {
-        driver.get("https://demo.opencart.com");
-        System.out.println("Thread id is "+ Thread.currentThread().getId());}
+        getDriver().get("https://demo.opencart.com");
 
-    @AfterSuite
+    }
+    @AfterTest
     public void closeDriverInstance() {
         closeDriver();
     }

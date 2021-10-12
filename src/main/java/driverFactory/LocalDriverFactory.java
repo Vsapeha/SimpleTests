@@ -13,6 +13,9 @@ public class LocalDriverFactory {
     public static WebDriver driver;
     private static String driverName;
 
+    private LocalDriverFactory() {
+    }
+
     public static WebDriver getDriver() {
         driverName = System.getProperty("driver") == null ? "chrome" : System.getProperty("driver");
         if (driver == null) {

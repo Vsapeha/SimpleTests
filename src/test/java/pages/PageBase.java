@@ -8,15 +8,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PageBase {
-    protected WebDriver driver;
 
     public PageBase(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+         PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//div[contains(@class, 'product-thumb')]")

@@ -22,11 +22,15 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M4</version>
                 <configuration>
+                    <parallel>methods</parallel>
+                    <threadCount>10</threadCount>
+                    <properties>
                     <suiteXmlFiles>
-                        <suiteXmlFile>Testng.xml</suiteXmlFile>
-                        <suiteXmlFile>Testng1.xml</suiteXmlFile>
-                        <suiteXmlFile>Testng2.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/Testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/Testng1.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/Testng2.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    </properties>
                 </configuration>
             </plugin>
         </plugins>
